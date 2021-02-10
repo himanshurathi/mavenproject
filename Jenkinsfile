@@ -1,10 +1,9 @@
 pipeline {
-    agent { docker 'maven:3.3.3' }
-    stages {
-        stage('build') {
-            steps {
-                bat 'mvn --version'
-            }
+    agent any
+    stage('clone the code') {
+        steps {
+            git 'https://github.com/himanshurathi/mavenproject'
+            sh 'mvn clean package'
         }
     }
 }
